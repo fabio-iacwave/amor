@@ -4,12 +4,41 @@ body {
   background: linear-gradient(to bottom, #ffe6f0, #ffe6cc);
   color: #4b2e2e;
   text-align: center;
+  position: relative;
+  padding: 0 60px; /* espaço lateral para as bordas de corações */
+}
+
+/* Corações decorativos nas laterais da página */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  background-image: url('midias/coracao.png');
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-position: center;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  left: 0;
+}
+
+body::after {
+  right: 0;
 }
 
 header {
   padding: 2rem 1rem 1rem;
   background: #ffeaf5;
   border-bottom: 2px solid #f8cce0;
+  position: relative;
+  z-index: 1;
 }
 
 h1 {
@@ -29,6 +58,8 @@ h1 {
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
 .grid img,
@@ -43,22 +74,4 @@ h1 {
 .grid video:hover {
   transform: scale(1.03);
   opacity: 0.9;
-}
-
-.decor {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.15;
-  z-index: 0;
-  width: 100px;
-  pointer-events: none;
-}
-
-.decor-esquerda {
-  left: 10px;
-}
-
-.decor-direita {
-  right: 10px;
 }
