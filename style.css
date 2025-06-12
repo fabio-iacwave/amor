@@ -44,3 +44,21 @@ h1 {
   transform: scale(1.03);
   opacity: 0.9;
 }
+
+.decor {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.15;
+  z-index: 0;
+  width: 100px;
+  pointer-events: none;
+}
+
+.decor-esquerda {
+  left: 10px;
+}
+
+.decor-direita {
+  right: 10px;
+}
