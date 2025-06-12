@@ -1,19 +1,46 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Nosso Amor em Memórias 💘</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <h1>Nosso Amor em Memórias 💘</h1>
-    <p class="subtitulo">Feliz Dia dos Namorados!</p>
-  </header>
-  <div class="slideshow-container">
-    <div id="media-container" class="media-box"></div>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+const total = 178;
+const midias = [];
+
+for (let i = 1; i <= total; i++) {
+  if (i % 6 === 0) {
+    // Um vídeo a cada 6
+    const ext = i % 2 === 0 ? 'mp4' : 'mov';
+    midias.push({ type: 'video', src: `midias/vid${i}.${ext}` });
+  } else {
+    midias.push({ type: 'image', src: `midias/img${i}.jpg` });
+  }
+}
+
+let index = 0;
+const container = document.getElementById("media-container");
+
+function carregar(index) {
+  const m = midias[index];
+  container.innerHTML = "";
+
+  let el;
+  if (m.type === 'image') {
+    el = document.createElement("img");
+    el.src = m.src;
+    el.loading = "lazy";
+  } else {
+    el = document.createElement("video");
+    el.src = m.src;
+    el.autoplay = true;
+    el.muted = true;
+    el.controls = false;
+    el.playsInline = true;
+    el.loop = false;
+  }
+
+  container.appendChild(el);
+}
+
+function avancar() {
+  index = (index + 1) % midias.length;
+  carregar(index);
+}
+
+// Início
+carregar(index);
+setInterval(avancar, 5000);

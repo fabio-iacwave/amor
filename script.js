@@ -1,9 +1,8 @@
-const total = 178;
+const total = 10;
 const midias = [];
 
 for (let i = 1; i <= total; i++) {
-  if (i % 6 === 0) {
-    // Um vídeo a cada 6
+  if (i % 5 === 0) {
     const ext = i % 2 === 0 ? 'mp4' : 'mov';
     midias.push({ type: 'video', src: `midias/vid${i}.${ext}` });
   } else {
@@ -41,6 +40,5 @@ function avancar() {
   carregar(index);
 }
 
-// Início
 carregar(index);
 setInterval(avancar, 5000);
