@@ -1,7 +1,7 @@
 const galeria = document.getElementById("galeria");
 
 // 124 imagens .jpg
-const fotos = Array.from({ length: 124 }, (_, i) => ({
+const fotos = Array.from({ length: 123 }, (_, i) => ({
   type: 'image',
   src: `midias/img${i + 1}.jpg`
 }));

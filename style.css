@@ -26,9 +26,9 @@ h1 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
-  padding: 2rem;
+  padding: 1.5rem;
   max-width: 1200px;
   margin: auto;
   position: relative;
@@ -38,13 +38,27 @@ h1 {
 .grid img,
 .grid video {
   width: 100%;
+  height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: transform 0.3s ease, opacity 0.3s ease;
+  display: block;
+  max-width: 100%;
 }
 
 .grid img:hover,
 .grid video:hover {
   transform: scale(1.03);
   opacity: 0.9;
+}
+
+/* Responsividade adicional para títulos em telas pequenas */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+  }
 }
