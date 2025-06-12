@@ -1,11 +1,11 @@
 const galeria = document.getElementById("galeria");
 
-const fotos = Array.from({ length: 134 }, (_, i) => ({
+const fotos = Array.from({ length: 124 }, (_, i) => ({
   type: 'image',
   src: `midias/img${i + 1}.jpg`
 }));
 
-const videos = Array.from({ length: 44 }, (_, i) => {
+const videos = Array.from({ length: 39 }, (_, i) => {
   const n = i + 1;
   const isMp4 = [2, 4, 39].includes(n);
   return {
