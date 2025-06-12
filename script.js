@@ -1,44 +1,44 @@
-const total = 10;
+const galeria = document.getElementById("galeria");
+
+const fotos = Array.from({ length: 134 }, (_, i) => ({
+  type: 'image',
+  src: `midias/img${i + 1}.${i % 2 === 0 ? 'jpg' : 'jpeg'}`
+}));
+
+const videos = Array.from({ length: 44 }, (_, i) => ({
+  type: 'video',
+  src: `midias/vid${i + 1}.${i % 2 === 0 ? 'mp4' : 'mov'}`
+}));
+
+// Intercala imagens e vídeos
 const midias = [];
+const max = Math.max(fotos.length, videos.length);
+let fi = 0, vi = 0;
 
-for (let i = 1; i <= total; i++) {
-  if (i % 5 === 0) {
-    const ext = i % 2 === 0 ? 'mp4' : 'mov';
-    midias.push({ type: 'video', src: `midias/vid${i}.${ext}` });
-  } else {
-    midias.push({ type: 'image', src: `midias/img${i}.jpg` });
+for (let i = 0; i < fotos.length + videos.length; i++) {
+  if ((i % 3 === 0 || vi >= videos.length) && fi < fotos.length) {
+    midias.push(fotos[fi++]);
+  } else if (vi < videos.length) {
+    midias.push(videos[vi++]);
   }
 }
 
-let index = 0;
-const container = document.getElementById("media-container");
+// Renderiza os elementos
+midias.forEach((m, index) => {
+  let el = document.createElement("a");
+  el.className = "glightbox";
 
-function carregar(index) {
-  const m = midias[index];
-  container.innerHTML = "";
-
-  let el;
-  if (m.type === 'image') {
-    el = document.createElement("img");
-    el.src = m.src;
-    el.loading = "lazy";
+  if (m.type === "image") {
+    el.href = m.src;
+    el.innerHTML = `<img class="lazy" data-src="${m.src}" alt="foto ${index + 1}">`;
   } else {
-    el = document.createElement("video");
-    el.src = m.src;
-    el.autoplay = true;
-    el.muted = true;
-    el.controls = false;
-    el.playsInline = true;
-    el.loop = false;
+    el.href = m.src;
+    el.setAttribute("data-type", "video");
+    el.innerHTML = `<video class="lazy" data-src="${m.src}" muted preload="none" controls></video>`;
   }
 
-  container.appendChild(el);
-}
+  galeria.appendChild(el);
+});
 
-function avancar() {
-  index = (index + 1) % midias.length;
-  carregar(index);
-}
-
-carregar(index);
-setInterval(avancar, 5000);
+const lazyLoadInstance = new LazyLoad();
+const lightbox = GLightbox({ selector: '.glightbox' });
